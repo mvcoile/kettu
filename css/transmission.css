@@ -23,7 +23,7 @@ h3 {
 }
 
 /* structure */
-header, 
+header,
 footer {
   position: fixed;
   height: 2em;
@@ -114,7 +114,7 @@ nav ul li a:hover {
 
 /* bottom nav, toggles compact view and speed limit mode */
 .icon_nav {
-  
+
 }
 
 nav ul.icon_nav li a {
@@ -225,35 +225,35 @@ nav ul.icon_nav li a:hover {
 }
 
 .torrent .ui-widget-header-uploading {
-  border: 1px solid #AAA; 
+  border: 1px solid #AAA;
   color: #444;
   font-weight: bold;
   background: url(jquery/images/ui-bg_highlight-soft_60_4ca20b_1x100.png) repeat-x;
 }
 
 .torrent .ui-widget-header-verifying {
-  border: 1px solid #AAA; 
+  border: 1px solid #AAA;
   color: #444;
   font-weight: bold;
   background: url(jquery/images/ui-bg_highlight-soft_44_444444_1x100.png) repeat-x;
 }
 
 .torrent .ui-widget-header-downloading {
-  border: 1px solid #AAA; 
+  border: 1px solid #AAA;
   color: #444;
   font-weight: bold;
-  background: url(jquery/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png) repeat-x;  
+  background: url(jquery/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png) repeat-x;
 }
 
 .torrent .ui-widget-header-meta {
-  border: 1px solid #AAA; 
+  border: 1px solid #AAA;
   color: #444;
   font-weight: bold;
   background: url(jquery/images/ui-bg_highlight-hard_75_f5f5b5_1x100.png) repeat-x;
 }
 
 .torrent .ui-widget-header-paused {
-  border: 1px solid #AAA; 
+  border: 1px solid #AAA;
   color: #444;
   font-weight: bold;
   background: url(jquery/images/ui-bg_highlight-soft_75_cccccc_1x100.png) repeat-x;
@@ -311,7 +311,7 @@ nav ul.icon_nav li a:hover {
 
 .torrent .progressDetails {
   margin: 0px;
-  padding: 0px;  
+  padding: 0px;
   color: #555;
 }
 
@@ -479,7 +479,7 @@ ul#sorts li a {
 
 /* torrents list */
 #torrents {
-  width: 100% !important;  
+  width: 100% !important;
   padding: 0px;
   margin: 0px;
 }
@@ -706,7 +706,7 @@ padding: 3px 30px;
 }
 
 .compact .name {
-  display: inline-block;  
+  display: inline-block;
 }
 
 .compact .statusString {

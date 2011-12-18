@@ -15,7 +15,7 @@ jQuery(function($) {
 		}
 	};
 	window.running_ajax_calls = 0;
-	
+
 	var ajax_with_count = function(options) {
 		window.running_ajax_calls += 1;
 		options.success = count_down(options.success);

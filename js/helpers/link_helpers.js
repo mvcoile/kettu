@@ -8,21 +8,21 @@ var LinkHelpers = {
     this.activateCompactViewLink();
     this.activateStartAndStopAllLink();
   },
-  
+
   activateInspectorLink: function() {
     var context = this;
-    
+
     $('#inspector').click(function() {
       if(context.infoIsOpen() && (window.location.hash.match(/\/torrents\/\d+/) ||
           window.location.hash.match(/\/torrent_details/))) {
         context.closeInfo();
       } else {
         context.redirect('#/torrent_details');
-      }      
+      }
       return false;
     });
   },
-  
+
   activateAddTorrentLink: function() {
     var context = this;
     $('#add_a_torrent').click(function() {
@@ -41,7 +41,7 @@ var LinkHelpers = {
       $('#speed_limit_mode').text('Disable Speed Limit Mode');
       $('#speed_limit_mode_form').find('input:first').attr('value', 'false');
     }
-    
+
     $('#speed_limit_mode').click(function() {
       var form = $('#speed_limit_mode_form');
       form.trigger('submit');
@@ -60,12 +60,12 @@ var LinkHelpers = {
 
   activateCompactViewLink: function() {
     var context = this, redirect_path = '';
-    
+
     if(transmission.store.get('view_mode') == 'compact') {
       $('#compact_view').addClass('active');
-      $('#compact_view').text('Disable Compact View');      
+      $('#compact_view').text('Disable Compact View');
     }
-    
+
     $('#compact_view').click(function() {
       if($(this).hasClass('active')) {
         $(this).removeClass('active');
@@ -80,21 +80,21 @@ var LinkHelpers = {
       return false;
     });
   },
-  
+
   activateStartAndStopAllLink: function() {
     $('#start_all').click(function() {
       var selected_ids = $.map($('.torrent'), function(torrent) {return $(torrent).attr('id')}).join(',');
       $('#context_menu .activate form .ids').val(selected_ids);
-      $('#context_menu .activate form').submit();      
+      $('#context_menu .activate form').submit();
     });
-    
+
     $('#stop_all').click(function() {
       var selected_ids = $.map($('.torrent'), function(torrent) {return $(torrent).attr('id')}).join(',');
       $('#context_menu .pause form .ids').val(selected_ids);
       $('#context_menu .pause form').submit();
     });
   },
-  
+
   activateSettingsLink: function() {
     var context = this;
     $('#settings').click(function() {

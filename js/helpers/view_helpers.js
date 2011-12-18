@@ -4,7 +4,7 @@ var ViewHelpers = {
     torrents.addClass('active');
     if(more_torrents) { more_torrents.addClass('active'); }
   },
-  
+
   showErrors: function(errors) {
     var error_string = '<p>';
     $.each(errors, function() {
@@ -13,13 +13,13 @@ var ViewHelpers = {
     error_string += '.</p>';
     $('#errors').html(error_string);
   },
-  
+
   saveLastMenuItem: function(active_menu_item) {
     if(active_menu_item.length > 0) {
       transmission.last_menu_item = $(active_menu_item).attr('id');
     }
   },
-  
+
   menuizeInfo: function() {
     $('#info .menu-item').click(function() {
       $('#info .menu-item').removeClass('active');
@@ -33,10 +33,10 @@ var ViewHelpers = {
       $('#' + transmission.last_menu_item).click();
     } else {
       $('#info .item:first').show();
-      $('#info .menu-item:first').addClass('active');      
+      $('#info .menu-item:first').addClass('active');
     }
   },
-  
+
   sanitizeNumber: function(number) {
     if(number >= 0) {
       return number;
@@ -46,7 +46,7 @@ var ViewHelpers = {
       return 'Infinity';
     }
   },
-  
+
   activateSortSelect: function(context) {
     $('#sort_link').click(function() {
       $('#sorts').slideToggle();

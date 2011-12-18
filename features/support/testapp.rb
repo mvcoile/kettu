@@ -18,7 +18,7 @@ post '/transmission/rpc' do
       f << params.to_s
     end
   end
-  
+
   file_name = params.keys.first.match(/ids/) ? "singular" : "plural"
   File.read(File.dirname(__FILE__) + "/#{file_name}.json")
 end

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./css/transmission.css" media="screen and (min-device-width: 481px)" />
     <link rel="stylesheet" type="text/css" href="./css/temp.css" media="screen and (min-device-width: 481px)" />
     <link rel="stylesheet" type="text/css" href="./css/iphone.css" media="only screen and (max-device-width: 480px)" />
-		
+
     <script src="./vendor/jquery/jquery.js"></script>
     <script src="./vendor/jquery/jquery.ui.js"></script>
     <script src="./vendor/jquery/jquery.form.js"></script>
@@ -51,7 +51,7 @@
     <script src="./js/helpers/view_helpers.js"></script>
     <script src="./js/transmission.js"></script>
     <script src="./features/support/culerity.js"></script>
-    
+
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/ico" href="favicon.ico" />
     <link rel="apple-touch-icon" href="./css/images/webclip-icon.png" />
@@ -62,7 +62,7 @@
       <div id="flash"></div>
 
       <div id="globalUpAndDownload"></div>
-      
+
       <div id="filterbar">
 
         <ul id="filter_sort_links">
@@ -71,7 +71,7 @@
               <li><a href="#/torrents?filter=all" class="all">All</a></li>
               <li><a href="#/torrents?filter=downloading" class="downloading">Downloading</a></li>
               <li><a href="#/torrents?filter=seeding" class="seeding">Seeding</a></li>
-              <li><a href="#/torrents?filter=paused" class="paused">Paused</a></li>   
+              <li><a href="#/torrents?filter=paused" class="paused">Paused</a></li>
               <li><a href="#/torrents?filter=activity" class="activity">Activity</a></li>
             </ul>
           </li>
@@ -87,17 +87,17 @@
             </ul>
           </li>
           <li>
-            <a href="#/torrents?sort=reverse" id="reverse_link" title="Reverse Order">Reverse Order</a> 
+            <a href="#/torrents?sort=reverse" id="reverse_link" title="Reverse Order">Reverse Order</a>
           </li>
         </ul>
 
         <div id="search_filter">
           <input type="search" placeholder="Filter" id="search" />
         </div>
-      </div>      
+      </div>
     </header>
 
-    <div id="container" class="container">    
+    <div id="container" class="container">
       <div class="main info">
         <div class="torrents_container">
           <ul id="torrents"></ul>
@@ -118,15 +118,15 @@
               <input type="hidden" name="ids" class="ids" value="" />
               <input type="hidden" name="method" value="torrent-start" />
               <input type="submit" value="Resume" />
-            </form>            
+            </form>
           </li>
           <li class="verify">
             <form action="#/torrents" method="PUT">
               <input type="hidden" name="ids" class="ids" value="" />
               <input type="hidden" name="method" value="torrent-verify" />
               <input type="submit" value="Verify" />
-            </form>            
-          </li>          
+            </form>
+          </li>
           <li class="delete">
             <a href="#delete_form" class="facebox_link">Delete</a>
             <div id="delete_form" class="facebox_div">
@@ -139,12 +139,12 @@
                 <form method="DELETE" action="#/torrents" class="torrent_delete_form">
                   <input type="hidden" name="ids" class="ids" value="" />
                   <input type="submit" value="Delete" />
-                </form>      
+                </form>
                 <form method="DELETE" action="#/torrents" class="torrent_delete_form">
                   <input type="hidden" name="ids" class="ids" value="" />
                   <input type="hidden" value="true" name="delete_data" />
                   <input type="submit" value="Delete with data" />
-                </form>        
+                </form>
               </div>
               <br class="clear" />
             </div>
@@ -154,14 +154,14 @@
           </li>
         </ul>
       </div>
-    </div>   
+    </div>
 
     <form action="#/settings" method="PUT" id="speed_limit_mode_form">
       <input type="hidden" name="alt-speed-enabled" value="true" />
     </form>
-  
+
     <footer>
-      <nav id="footer">        
+      <nav id="footer">
         <ul class="icon_nav">
           <li><a href="#" id="compact_view" title="Compact View">Enable Compact View</a></li>
           <li><a href="#" id="speed_limit_mode" title="Speed Limit Mode">Enable Speed Limit Mode</a></li>
@@ -175,7 +175,7 @@
           <li><a href="#" id="statistics">Statistics</a></li>
           <li><a href="#" id="settings">Preferences</a></li>
         </ul>
-      </nav>      
+      </nav>
     </footer>
-  </body>  
+  </body>
 </html>

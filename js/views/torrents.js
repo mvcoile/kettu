@@ -1,6 +1,6 @@
 TorrentsView = function(torrent, context) {
   var view = torrent;
-  
+
   view.pauseAndActivateButton = function() {
     var torrent = Torrent(view);
     var options = torrent.isActive() ? ['torrent-stop', 'Pause', 'pause'] : ['torrent-start', 'Activate', 'activate'];
@@ -10,7 +10,7 @@ TorrentsView = function(torrent, context) {
       'method': options[0],
       'button': options[1],
       'css_class': options[2]
-    });    
+    });
   };
 
   view.firstTracker = function() {
@@ -20,19 +20,19 @@ TorrentsView = function(torrent, context) {
       return '';
     }
   };
-  
+
   view.errorClass = function() {
     return view.hasError() ? ' error' : '';
   };
-  
+
   view.showPriorityArrow = function() {
     return torrent.bandwidthPriority != 0;
   }
-  
+
   view.priorityArrow = function() {
     return torrent.bandwidthPriority == 1 ? 'up' : 'down';
   }
-  
+
   view.cache_partial = context.cache_partial;
 
   return view;

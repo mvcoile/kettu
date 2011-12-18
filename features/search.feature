@@ -10,7 +10,7 @@ Feature: Search
     Then I should see "Mutant Ninja Turtles"
       But I should not see "Donald Duck"
       And I should not see "Saber Riders"
-      
+
   Scenario: search by tracker
     Given three torrents with the names "Mutant Ninja Turtles, Donald Duck, Saber Riders" and the trackers "MyFirstTracker, MySecondTracker, MyThirdTracker"
     When I go to the start page
@@ -18,6 +18,5 @@ Feature: Search
     Then I should see "Donald Duck"
       But I should not see "Mutant Ninja Turtles"
       And I should not see "Saber Riders"
-  
-  
-  
+
+

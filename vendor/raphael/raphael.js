@@ -314,7 +314,7 @@ window.Raphael = {};
       }
       var paramCounts = {a: 7, c: 6, h: 1, l: 2, m: 2, q: 4, s: 4, t: 2, v: 1, z: 0},
           data = [];
-          
+
       if (R.is(pathString, "array") && R.is(pathString[0], "array")) { // rough assumption
           data = pathClone(pathString);
       }
@@ -362,7 +362,7 @@ window.Raphael = {};
           return {x: 0, y: 0, width: 0, height: 0};
       }
       path = path2curve(path);
-      var x = 0, 
+      var x = 0,
           y = 0,
           X = [],
           Y = [],
@@ -1012,7 +1012,7 @@ window.Raphael = {};
           var id = o.getAttribute("fill");
           id = id.match(/^url\(#(.*)\)$/);
           id && SVG.defs.removeChild(doc.getElementById(id[1]));
-          
+
           var el = $(type + "Gradient");
           el.id = "r" + (R._id++)[toString](36);
           $(el, type == "radial" ? {fx: fx, fy: fy} : {x1: vector[0], y1: vector[1], x2: vector[2], y2: vector[3]});
@@ -1288,7 +1288,7 @@ window.Raphael = {};
                   }
               }
           }
-          
+
           tuneText(o, params);
           if (rotxy) {
               o.rotate(rotxy.join(S));
@@ -1703,7 +1703,7 @@ window.Raphael = {};
               }
               return res[join](S);
           };
-      
+
       R[toString] = function () {
           return  "Your browser doesn\u2019t support SVG. Falling down to VML.\nYou are running Rapha\xebl " + this.version;
       };
@@ -1800,7 +1800,7 @@ window.Raphael = {};
           params["font-size"] && (s.fontSize = params["font-size"]);
           params["font-weight"] && (s.fontWeight = params["font-weight"]);
           params["font-style"] && (s.fontStyle = params["font-style"]);
-          if (params.opacity != null || 
+          if (params.opacity != null ||
               params["stroke-width"] != null ||
               params.fill != null ||
               params.stroke != null ||
@@ -1863,7 +1863,7 @@ window.Raphael = {};
               params["stroke-width"] && (stroke.weight = width);
               width && width < 1 && (opacity *= width) && (stroke.weight = 1);
               stroke.opacity = opacity;
-              
+
               params["stroke-linejoin"] && (stroke.joinstyle = params["stroke-linejoin"] || "miter");
               stroke.miterlimit = params["stroke-miterlimit"] || 8;
               params["stroke-linecap"] && (stroke.endcap = params["stroke-linecap"] == "butt" ? "flat" : params["stroke-linecap"] == "square" ? "square" : "round");

@@ -20,7 +20,7 @@ var InfoHelpers = {
       clearInterval(transmission.info_interval_id);
     }
   },
-  
+
   infoIsOpen: function() {
     return $('.main').hasClass('info');
   },
@@ -34,19 +34,19 @@ var InfoHelpers = {
         var active_torrent = $('.torrent.active');
         if(active_torrent.length > 0) {
           context.redirect('#/torrent_details/' + active_torrent.attr('id'));
-        }        
+        }
       }
       event.preventDefault();
     });
   },
-  
+
   // NOTE: make this smaller and more readable
   handleClickOnTorrent: function(torrent) {
     var context = this;
     $('#' + torrent.id).click(function(e) {
       // NOTE: why is this necessary? somehow safari does not stop propagation on a context menu event.
       if($('#context_menu').is(':visible')) { return false; }
-      
+
       if(e.shiftKey && $('.torrent.active').length >= 1) {
         var first_index = $('.torrent.active:first').index();
         var last_index = $('.torrent').index($(this));
@@ -61,7 +61,7 @@ var InfoHelpers = {
 
         context.highlightTorrents(torrents);
         if(context.infoIsOpen()) { context.redirect('#/torrent_details'); }
-        $('#search').focus();          
+        $('#search').focus();
       } else if(e.metaKey && $('.torrent.active').length >= 1) {
         $(this).toggleClass('active');
         if(context.infoIsOpen()) { context.redirect('#/torrent_details'); }
@@ -71,11 +71,11 @@ var InfoHelpers = {
           context.saveLastMenuItem($('.menu-item.active'));
           window.location = '#/torrent_details/' + $(this).attr('id');
           // NOTE: a redirect seems to interfere with our double click handling here
-        }        
+        }
       }
-    });    
+    });
   },
-  
+
   handleDragging: function() {
     var context = this;
     $('#torrents').mousedown(function(event) {
@@ -87,27 +87,27 @@ var InfoHelpers = {
   		//       maybe there's a faster way to do this?
       $('#torrents').mousemove(function(event) {
         context.closest_torrent.addClass('active');
-        
+
         var y1 = context.original_position;
         var y2 = $(event.target).closest('.torrent').position().top;
 
     		if(y2 < y1) { var tmp = y1; y1 = y2; y2 = tmp; }
-        
+
         $('.torrent:visible').each(function() {
-          var position = $(this).position();          
+          var position = $(this).position();
           if(position.top < y2 && position.top > y1) {
             $(this).addClass('active');
           }
         });
       });
-      
+
       event.preventDefault();
     });
 
     $('body').mouseup(function() {
       $('#torrents').unbind('mousemove');
     });
-    
+
     $('#torrents').mouseup(function() {
       $('#torrents').unbind('mousemove');
     });
@@ -118,7 +118,7 @@ var InfoHelpers = {
     this.handleClickOnTorrent(torrent);
     this.handleDoubleClickOnTorrent(torrent);
   },
-  
+
   activateInfoInputs: function(torrent) {
     $('#info input').change(function() {
       $(this).parents('form:first').trigger('submit');
@@ -136,7 +136,7 @@ var InfoHelpers = {
       }
       return false;
     });
-    
+
     $('#info .bandwidthPriority').val(torrent.bandwidthPriority);
     $('#info .seedRatioMode').val(torrent.seedRatioMode);
 
@@ -173,13 +173,13 @@ var InfoHelpers = {
       return false;
     });
   },
-  
+
   startCountDownOnNextAnnounce: function() {
     var context = this;
     var timer = setInterval(function() {
       var timestamp = $('.countdown').attr('data-timestamp');
       var formatted = context.formatNextAnnounceTime(timestamp);
-      
+
       if(formatted.match(/59 min/)) {
         clearInterval(timer);
         context.saveLastMenuItem($('.menu-item.active'));

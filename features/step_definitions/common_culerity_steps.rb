@@ -98,11 +98,11 @@ Then /^I should see \/(.*)\/$/ do |text|
   end
 end
 
-Then /I should not see "(.*)"/ do |text|  
-  div_nil = false 
+Then /I should not see "(.*)"/ do |text|
+  div_nil = false
   if ($browser.div(:text, /#{text}/) rescue nil)
-    div_nil = true 
-  else 
+    div_nil = true
+  else
     if $browser.div(:text, /#{text}/).style.match(/-9999px/)
       div_nil = true
     end

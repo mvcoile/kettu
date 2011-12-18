@@ -10,7 +10,7 @@ describe 'TorrentsView'
       context.mustache      = function(template, view) {return Mustache.to_html(template, view);}
       torrents_view         = TorrentsView({}, context)
     end
-    
+
     it 'should return a form to pause the torrent if the torrent is active'
       torrents_view.id = 567;
       torrents_view.status = Torrent({}).stati['downloading'];
@@ -22,7 +22,7 @@ describe 'TorrentsView'
       torrents_view.status = Torrent({}).stati['paused'];
       torrents_view.pauseAndActivateButton().should.match(new RegExp(start_form));
     end
-    
+
     it 'should return a form to start the torrent if the torrent is paused and done downloading'
       torrents_view.id = 567;
       torrents_view.status = Torrent({}).stati['paused'];

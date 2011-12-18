@@ -12,9 +12,9 @@ describe 'FilterTorrentsHelpers'
     var filtered_torrents = filter_helpers.filterTorrents('all', torrents)
     filtered_torrents[0].id.should.eql('1')
     filtered_torrents[1].id.should.eql('2')
-    filtered_torrents[2].id.should.eql('3')    
+    filtered_torrents[2].id.should.eql('3')
   end
-  
+
   it 'should filter by paused'
     var torrents = [
       Torrent({'id': '1', 'name': 'Zelda', 'status': 4}),
@@ -25,7 +25,7 @@ describe 'FilterTorrentsHelpers'
     filtered_torrents[0].id.should.eql('2')
     filtered_torrents.length.should.eql(1)
   end
-  
+
   it 'should filter by downloading'
     var torrents = [
       Torrent({'id': '1', 'name': 'Zelda', 'status': 4}),
@@ -36,7 +36,7 @@ describe 'FilterTorrentsHelpers'
     filtered_torrents[0].id.should.eql('1')
     filtered_torrents.length.should.eql(1)
   end
-  
+
   it 'should filter by seeding'
     var torrents = [
       Torrent({'id': '1', 'name': 'Zelda', 'status': 4}),

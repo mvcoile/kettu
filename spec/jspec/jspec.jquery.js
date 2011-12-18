@@ -5,15 +5,15 @@ JSpec
 .requires('jQuery', 'when using jspec.jquery.js')
 .include({
   name: 'jQuery',
-  
+
   // --- Initialize
-  
+
   init : function() {
     jQuery.ajaxSetup({ async: false })
   },
-  
+
   // --- Utilities
-  
+
   utilities : {
     element:  jQuery,
     elements: jQuery,
@@ -21,9 +21,9 @@ JSpec
       return jQuery('<div class="sandbox"></div>')
     }
   },
-  
+
   // --- Matchers
-  
+
   matchers : {
     have_tag      : "jQuery(expected, actual).length == 1",
     have_one      : "alias have_tag",
@@ -35,13 +35,13 @@ JSpec
     have_value    : "jQuery(actual).val() == expected",
     be_enabled    : "!jQuery(actual).attr('disabled')",
     have_class    : "jQuery(actual).hasClass(expected)",
-    
+
     be_visible : function(actual) {
       return jQuery(actual).css('display') != 'none' &&
              jQuery(actual).css('visibility') != 'hidden' &&
              jQuery(actual).attr('type') != 'hidden'
     },
-    
+
     be_hidden : function(actual) {
       return !JSpec.does(actual, 'be_visible')
     },
@@ -56,11 +56,11 @@ JSpec
       return value ? jQuery(actual).attr(attr) == value:
                      jQuery(actual).attr(attr)
     },
-    
+
     'be disabled selected checked' : function(attr) {
       return 'jQuery(actual).attr("' + attr + '")'
     },
-    
+
     'have type id title alt href src sel rev name target' : function(attr) {
       return function(actual, value) {
         return JSpec.does(actual, 'have_attr', attr, value)

@@ -1,18 +1,18 @@
 TorrentView = function(torrent, context, sort_peers) {
   var view = torrent;
   view.sort_peers = sort_peers || 'client';
-  
+
   view.formatTime = function(timestamp) {
     var current = new Date(parseInt(timestamp) * 1000);
     if(current) {
       var date = (current.getMonth() + 1) + '/' + current.getDate() + '/' + current.getFullYear();
       var time = current.getHours() + ':' + (current.getMinutes() < 10 ? '0' + current.getMinutes() : current.getMinutes());
-      return date + ' ' + time;      
+      return date + ' ' + time;
     } else {
       return timestamp;
     }
   };
-  
+
   view.addFormattedTimes = function() {
     if(view.trackerStats !== undefined) {
       var i = 0;
@@ -23,10 +23,10 @@ TorrentView = function(torrent, context, sort_peers) {
         view.trackerStats[i]['lastScrapeDidNotSucceed'] = !view.lastScrapeSucceeded;
         view.trackerStats[i]['lastAnnounceDidNotSucceed'] = !view.lastAnnounceSucceeded;
         i += 1;
-      });      
-    }    
+      });
+    }
   };
-  
+
   view.addFormattedSizes = function() {
     if(view.files !== undefined) {
       $.each(view.files, function() {
@@ -39,17 +39,17 @@ TorrentView = function(torrent, context, sort_peers) {
         this.uploadFormatted = this['rateToPeer'] !== 0 ? Math.formatBytes(this['rateToPeer']) : '';
         this.downloadFormatted = this['rateToClient'] !== 0? Math.formatBytes(this['rateToClient']) : '';
         this.percentDone = Math.formatPercent(100, 100 - (this['progress'] * 100));
-      });      
+      });
     }
     view.rateDownloadFormatted = Math.formatBytes(view.rateDownload) + '/s';
     view.rateUploadFormatted = Math.formatBytes(view.rateUpload) + '/s';
   };
-  
+
   view.sortPeers = function() {
     if(view.peers !== undefined) {
       var peers = view.peers;
       var peer_sort_function = function() {};
-    
+
       switch(view.sort_peers) {
         case 'client':
           peer_sort_function = function(a, b) {
@@ -78,7 +78,7 @@ TorrentView = function(torrent, context, sort_peers) {
       view.peers = peers.sort(peer_sort_function);
     }
   };
-  
+
   view.addIdsToFiles = function() {
     if(view.files) {
       $.each(view.files, function() {
@@ -94,12 +94,12 @@ TorrentView = function(torrent, context, sort_peers) {
       }
     }
   };
-  
+
   view.folderizeFiles = function() {
     view.folderless_files = [];
     view.folders = [];
     var i = -1;
-    
+
     if(view.files) {
       $.each(view.files, function() {
         var name = this['name'].split('/');
@@ -110,7 +110,7 @@ TorrentView = function(torrent, context, sort_peers) {
         } else {
           var folder = name.shift();
           this['name'] = name.join('/');
-          
+
           if(view.folders[i] && view.folders[i].name == folder) {
             view.folders[i].files.push(this);
             view.folders[i].lengthFormatted += this.length;
@@ -132,7 +132,7 @@ TorrentView = function(torrent, context, sort_peers) {
       });
     }
   };
-  
+
   view.addPriorityStringToFiles = function() {
     $.each(view.fileStats, function() {
       var id = view.fileStats.indexOf(this);
@@ -153,7 +153,7 @@ TorrentView = function(torrent, context, sort_peers) {
     });
     view.more_than_one_file = view.files.length > 1;
   };
-  
+
   view.sanitizeNumbers = function() {
     view.uploadRatio = context.sanitizeNumber(view.uploadRatio);
     if(view.trackerStats !== undefined) {
@@ -166,7 +166,7 @@ TorrentView = function(torrent, context, sort_peers) {
       });
     }
   };
-  
+
   view.addFormattedTimes();
   view.addFormattedSizes();
   view.sortPeers();
@@ -174,6 +174,6 @@ TorrentView = function(torrent, context, sort_peers) {
   view.sanitizeNumbers();
   view.addIdsToFiles();
   view.folderizeFiles();
-  
+
   return view;
 };
