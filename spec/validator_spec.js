@@ -2,7 +2,7 @@ describe 'Validator'
   before_each
     validator = new Validator()
   end
-  
+
   it 'should have no errors on a valid object'
     torrent = {'name': 'coffee', 'totalSize': 160, 'status': 8, 'rateUpload': 20}
     validator.schema = {
@@ -13,7 +13,7 @@ describe 'Validator'
     validator.validate(torrent)
     validator.errors.should.be_empty
   end
-  
+
   it 'should validate the presence of a single field'
     torrent = {}
     validator.schema = {
@@ -23,7 +23,7 @@ describe 'Validator'
     validator.errors[0]['field'].should.eql('name')
     validator.errors[0]['message'].should.eql('should not be empty')
   end
-  
+
   it 'should validate the presence of multiple fields'
     torrent = {}
     validator.schema = {
@@ -33,7 +33,7 @@ describe 'Validator'
     validator.errors[0]['field'].should.eql('name')
     validator.errors[1]['field'].should.eql('status')
   end
-  
+
   it 'should validate the numericality of a field'
     torrent = {'totalSize': 'abc'}
     validator.schema = {
@@ -43,7 +43,7 @@ describe 'Validator'
     validator.errors[0]['field'].should.eql('totalSize')
     validator.errors[0]['message'].should.eql('is not a valid number')
   end
-  
+
   it 'should validate the max value of a numeric field'
     torrent = {'totalSize': 100}
     validator.schema = {
@@ -51,9 +51,9 @@ describe 'Validator'
     }
     validator.validate(torrent)
     validator.errors[0]['field'].should.eql('totalSize')
-    validator.errors[0]['message'].should.eql('is not a valid number')    
+    validator.errors[0]['message'].should.eql('is not a valid number')
   end
-  
+
   it 'should validate the numericality of multiple fields'
     torrent = {'totalSize': 'abc', 'status': 'def'}
     validator.schema = {
@@ -63,7 +63,7 @@ describe 'Validator'
     validator.errors[0]['field'].should.eql('totalSize')
     validator.errors[1]['field'].should.eql('status')
   end
-  
+
   it 'should validate the numericality of a missing field and throw an error'
     torrent = {}
     validator.schema = {
@@ -71,7 +71,7 @@ describe 'Validator'
     }
     validator.validate(torrent)
     validator.errors[0]['field'].should.eql('totalSize')
-    validator.errors[0]['message'].should.eql('is not a valid number')    
+    validator.errors[0]['message'].should.eql('is not a valid number')
   end
 
   it 'should validate the numericality of null and throw an error'
@@ -81,9 +81,9 @@ describe 'Validator'
     }
     validator.validate(torrent)
     validator.errors[0]['field'].should.eql('totalSize')
-    validator.errors[0]['message'].should.eql('is not a valid number')    
+    validator.errors[0]['message'].should.eql('is not a valid number')
   end
-  
+
   it 'should validate the inclusion of a field'
     torrent = {'encryption': 'strong'}
     validator.schema = {

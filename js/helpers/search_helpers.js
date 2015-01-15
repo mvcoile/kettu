@@ -11,9 +11,9 @@ var SearchHelpers = {
       $(".torrent[data-tracker*='" + search_term + "']").show();
     } else {
       $('.torrent').show();
-    }    
+    }
   },
-  
+
   activateSearch: function(context) {
     $('#search').keyup(function(e) {
       context.performSearch($(this).val());

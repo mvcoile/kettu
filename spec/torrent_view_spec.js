@@ -14,7 +14,7 @@ describe 'TorrentView'
       torrent_view.addFormattedTimes()
       torrent_view.trackerStats[0].lastAnnounceTimeFormatted.should.match(new RegExp("2/" + day + "/2010 \\d+:53"))
     end
-    
+
     it 'should add a formatted time for lastScrapeTime'
       torrent_view.trackerStats[0] = {}
       torrent_view.trackerStats[0]['lastScrapeTime'] = timestamp
@@ -22,7 +22,7 @@ describe 'TorrentView'
       torrent_view.trackerStats[0].lastScrapeTimeFormatted.should.match(new RegExp("2/" + day + "/2010 \\d+:53"))
     end
   end
-  
+
   describe 'addFormattedSizes'
     describe 'files'
       it 'should add a formatted size for length'
@@ -31,33 +31,33 @@ describe 'TorrentView'
         torrent_view.addFormattedSizes()
         torrent_view.files[0].lengthFormatted.should.eql('2.0 KB')
       end
-    
+
       it 'should add a percent done value'
         torrent_view.files[0] = {'length': 2048, 'bytesCompleted': 512}
         torrent_view.addFormattedSizes()
         torrent_view.files[0].percentDone.should.eql('25')
       end
     end
-    
+
     describe 'peers'
       it 'should add a percent done value'
         torrent_view.peers[0] = {'progress': 0.7}
         torrent_view.addFormattedSizes()
         torrent_view.peers[0].percentDone.should.eql('70')
       end
-      
+
       it 'should add a formatted upload value'
         torrent_view.peers[0] = {'rateToPeer': 20}
         torrent_view.addFormattedSizes()
         torrent_view.peers[0].uploadFormatted.should.eql('20 bytes')
       end
-      
+
       it 'should add an empty string if upload value is 0'
         torrent_view.peers[0] = {'rateToPeer': 0}
         torrent_view.addFormattedSizes()
         torrent_view.peers[0].uploadFormatted.should.eql('')
       end
-      
+
       it 'should add a formatted download value'
         torrent_view.peers[0] = {'rateToClient': 20}
         torrent_view.addFormattedSizes()
@@ -65,7 +65,7 @@ describe 'TorrentView'
       end
     end
   end
-  
+
   describe 'sort peers'
     before_each
       torrent_view.peers = [
@@ -76,7 +76,7 @@ describe 'TorrentView'
         {'ip': '5.2.3.4', 'clientName': 'BitComet', 'percentDone': 50, 'rateToPeer': 20, 'rateToClient': 10}
       ]
     end
-    
+
     it 'should sort by client'
       torrent_view.sort_peers = 'client'
       torrent_view.sortPeers()
@@ -86,7 +86,7 @@ describe 'TorrentView'
       torrent_view.peers[3].clientName.should.eql('Transmission')
       torrent_view.peers[4].clientName.should.eql('Vuze')
     end
-    
+
     it 'should sort by percent'
       torrent_view.sort_peers = 'percent'
       torrent_view.sortPeers()
@@ -96,7 +96,7 @@ describe 'TorrentView'
       torrent_view.peers[3].clientName.should.eql('Vuze')
       torrent_view.peers[4].clientName.should.eql('Transmission')
     end
-    
+
     it 'should sort by upload'
       torrent_view.sort_peers = 'upload'
       torrent_view.sortPeers()
@@ -106,7 +106,7 @@ describe 'TorrentView'
       torrent_view.peers[3].clientName.should.eql('BitComet')
       torrent_view.peers[4].clientName.should.eql('Transmission')
     end
-    
+
     it 'should sort by download'
       torrent_view.sort_peers = 'download'
       torrent_view.sortPeers()
@@ -125,43 +125,43 @@ describe 'TorrentView'
       torrent_view.addIdsToFiles()
       torrent_view.files[0].id.should.eql('file_0')
     end
-    
+
     it 'should add wanted if the file is wanted'
       torrent_view.files = [{}, {}]
       torrent_view.fileStats = [{'wanted': true}, {}]
       torrent_view.addIdsToFiles()
       torrent_view.files[0].wanted.should.eql(' checked="checked"')
     end
-    
+
     it 'should not add wanted if the file is not wanted'
       torrent_view.files = [{}, {}]
       torrent_view.fileStats = [{'wanted': false}, {}]
       torrent_view.addIdsToFiles()
-      torrent_view.files[0].wanted.should_not.eql(' checked="checked"')      
+      torrent_view.files[0].wanted.should_not.eql(' checked="checked"')
     end
-    
+
     it 'should add disabled if the file is done downloading'
       torrent_view.files[0] = {'length': 200, 'bytesCompleted': 200}
       torrent_view.fileStats[0] = {}
       torrent_view.addIdsToFiles()
       torrent_view.files[0].disabled.should.eql(' disabled="disabled"')
     end
-    
+
     it 'should not add disabled if the file is not done downloading'
       torrent_view.files[0] = {'length': 200, 'bytesCompleted': 100}
       torrent_view.files[1] = {}
       torrent_view.fileStats = [{}, {}]
       torrent_view.addIdsToFiles()
-      torrent_view.files[0].disabled.should_not.eql(' disabled="disabled"')      
+      torrent_view.files[0].disabled.should_not.eql(' disabled="disabled"')
     end
-    
+
     it 'should add disabled if there is only one file'
       torrent_view.files[0] = {'length': 200, 'bytesCompleted': 100}
       torrent_view.fileStats = [{}]
       torrent_view.addIdsToFiles()
       torrent_view.files[0].disabled.should.eql(' disabled="disabled"')
     end
-    
+
     it 'should add wanted if the file is wanted'
       torrent_view.files[0] = {}
       torrent_view.fileStats[0] = {'wanted': false}

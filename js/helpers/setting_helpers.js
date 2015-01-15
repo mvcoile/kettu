@@ -1,6 +1,6 @@
 var SettingHelpers = {
   validator: new SettingsValidator(),
-  
+
   updateSettingsCheckboxes: function(settings) {
     $.each($('#info').find('input[type=checkbox]'), function() {
       var checkbox = $(this);
@@ -15,7 +15,7 @@ var SettingHelpers = {
         }
       });
     });
-    
+
     $('#info input').change(function(event) {
       if($(this).attr('name') == 'protocol-handler-enabled' || $(this).attr('name') == 'content-handler-enabled') {
         $(this).attr('disabled', 'disabled');
@@ -25,7 +25,7 @@ var SettingHelpers = {
       return false;
     });
   },
-  
+
   updateSettingsSelects: function(settings) {
     $.each($('#info').find('select'), function() {
       var name = $(this).attr('name');
@@ -33,7 +33,7 @@ var SettingHelpers = {
       $.each($(this).find('option'), function() {
         if($(this).val() == value) {
           $(this).attr('selected', 'selected');
-        } 
+        }
       });
     });
   },
@@ -42,16 +42,16 @@ var SettingHelpers = {
     context.validator.validate(setting_arguments);
     return ! context.validator.has_errors();
   },
-  
+
   setting_arguments_errors: function(context) {
     return context.validator.errors;
   },
-  
+
   is_speed_limit_mode_update: function(params) {
     return (params['alt-speed-enabled'] !== undefined);
   },
-  
-  prepare_arguments: function(context, params) {    
+
+  prepare_arguments: function(context, params) {
     if(params['alt-speed-enabled']) {
       transmission.store.set('speed_limit_mode', (params['alt-speed-enabled'] == "true") ? 'enabled' : 'disabled');
       return context.speed_limit_mode_hash(params['alt-speed-enabled']);
@@ -59,11 +59,11 @@ var SettingHelpers = {
       return context.arguments_hash(params);
     }
   },
-  
+
   speed_limit_mode_hash: function(speed_limit_mode) {
     return {'alt-speed-enabled': (speed_limit_mode == "true") ? true : false};
   },
-  
+
   arguments_hash: function(params, updatable_settings) {
     updatable_settings = updatable_settings || [
       'dht-enabled', 'pex-enabled', 'speed-limit-up', 'speed-limit-up-enabled', 'speed-limit-down',
@@ -81,10 +81,10 @@ var SettingHelpers = {
         hash[setting] = params[setting];
       }
     });
-    
+
     return hash;
   },
-  
+
   update_reload_interval: function(context, new_reload_interval) {
     new_reload_interval = parseInt(new_reload_interval, 10);
     if(new_reload_interval != (context.reload_interval/1000)) {
@@ -93,20 +93,20 @@ var SettingHelpers = {
       context.closeInfo();
     }
   },
-  
+
   manage_handlers: function(context, params) {
     if(params['protocol-handler-enabled'] && !transmission.store.exists('protocol-handler-enabled')) {
       transmission.store.set('protocol-handler-enabled', true);
       window.navigator.registerProtocolHandler('magnet', context.base_url() + '#/torrents/add?url=%s', "Transmission Web");
     }
-    
+
     if(params['content-handler-enabled'] && !transmission.store.exists('content-handler-enabled')) {
       transmission.store.set('content-handler-enabled', true);
       window.navigator.registerContentHandler("application/x-bittorrent", context.base_url() + '#/torrents/add?url=%s', "Transmission Web");
     }
   },
-  
-  base_url: function() { 
+
+  base_url: function() {
     return window.location.href.match(/^([^#]+)#.+$/)[1];
   }
 };

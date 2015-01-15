@@ -4,7 +4,7 @@ Validator.prototype = {
   has_errors: function() {
     return this.errors.length > 0;
   },
-  
+
   validate: function(object) {
     this.errors = [];
     for(validation in this.schema) {
@@ -21,7 +21,7 @@ Validator.prototype = {
       }
     }
   },
-  
+
   validate_presence_of: function(object, fields) {
     var context = this;
     fields = this.arrayfy_fields(fields);
@@ -30,10 +30,10 @@ Validator.prototype = {
       var field = object[this];
       if(typeof(field) == 'undefined') {
         context.errors.push({'field': this, 'message': context.error_messages['presence_of']})
-      }      
+      }
     });
   },
-  
+
   validate_numericality_of: function(object, fields) {
     var context = this;
     fields = this.arrayfy_fields(fields);
@@ -46,7 +46,7 @@ Validator.prototype = {
           var field = object[this['field']].toString();
           if(!field.match(/^\d+$/) || field > this['max']) {
             context.errors.push({'field': this['field'], 'message': context.error_messages['numericality_of']});
-          }          
+          }
         }
       } else {
         if(object[this] == undefined) {
@@ -55,12 +55,12 @@ Validator.prototype = {
           var field = object[this].toString();
           if(!field.match(/^\d+$/)) {
             context.errors.push({'field': this, 'message': context.error_messages['numericality_of']});
-          }          
+          }
         }
       }
     });
   },
-  
+
   validate_inclusion_of: function(object, field) {
     var content = object[field['field']];
     var included = false;
@@ -74,7 +74,7 @@ Validator.prototype = {
       this.errors.push({'field': field['field'], 'message': this.error_messages['inclusion_of']});
     }
   },
-  
+
   arrayfy_fields: function(fields) {
     if(!$.isArray(fields)) {
       return [fields];
@@ -82,12 +82,12 @@ Validator.prototype = {
       return fields;
     }
   },
-  
+
   schema: {},
   errors: [],
-  
-  error_messages: { 
-    presence_of: 'should not be empty', 
+
+  error_messages: {
+    presence_of: 'should not be empty',
     numericality_of: 'is not a valid number',
     inclusion_of: 'is not in the list of a valid values'
   }

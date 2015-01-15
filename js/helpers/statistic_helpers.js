@@ -9,14 +9,14 @@ var StatisticHelpers = {
         $('#facebox').addClass('graph');
         context.draw_graph(type, graph);
       });
-      
-      return false;      
+
+      return false;
     });
   },
-  
+
   up_and_download_graph: function() {
     var graph = {'data': [], 'labels': ''}, i = 2;
-    
+
     $.each(transmission.store.get('up_and_download_rate'), function() {
       if(i == 0) {
         graph['data'].push((this.up / 1024) + (this.down / 1024));
@@ -25,11 +25,11 @@ var StatisticHelpers = {
         i -= 1;
       }
     });
-    
+
     graph['labels'] = 'Activity';
     return graph;
   },
-  
+
   draw_graph: function(holder, graph) {
     var width = 800,
         height = 300,
@@ -46,7 +46,7 @@ var StatisticHelpers = {
         max = Math.max.apply(Math, graph['data']),
         Y = (height - bottomgutter - topgutter) / (max || 1);
     r.drawGrid(leftgutter + X * .5, topgutter, width - leftgutter - X, height - topgutter - bottomgutter, 10, 10, "#888888");
-    
+
     var path = r.path().attr({stroke: color, "stroke-width": 4, "stroke-linejoin": "round"}),
         bgp = r.path().attr({stroke: "none", opacity: .3, fill: color}).moveTo(leftgutter + X * .5, height - bottomgutter),
         frame = r.rect(10, 10, 100, 40, 5).attr({fill: "#000", stroke: "#474747", "stroke-width": 2}).hide(),
@@ -55,7 +55,7 @@ var StatisticHelpers = {
         leave_timer,
         blanket = r.set();
     label[0] = r.text(60, 10, "").attr(txt).hide();
-    
+
     for(var i = 0, ii = graph['data'].length; i < ii; i++) {
         var y = Math.round(height - bottomgutter - Y * graph['data'][i]),
             x = Math.round(leftgutter + X * (i + .5)),
@@ -86,7 +86,7 @@ var StatisticHelpers = {
                     is_label_visible = false;
                 }, 1);
             });
-        })(x, y, graph['data'][i], graph['labels'][i], dot);        
+        })(x, y, graph['data'][i], graph['labels'][i], dot);
     }
     bgp.lineTo(x, height - bottomgutter).andClose();
     frame.toFront();

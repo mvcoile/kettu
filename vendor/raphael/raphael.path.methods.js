@@ -8,7 +8,7 @@
 $(function() {
   Raphael = Raphael || {};
   Raphael.el = Raphael.el || {};
-  
+
   Raphael.el.isAbsolute = true;
   Raphael.el.absolutely = function () {
       this.isAbsolute = 1;
@@ -61,5 +61,5 @@ $(function() {
   };
   Raphael.el.andClose = function () {
       return this.attr({path: this.attrs.path + "z"});
-  };  
+  };
 });

@@ -1,7 +1,7 @@
 $(function() {
   Raphael = Raphael || {};
   Raphael.fn = Raphael.fn || {};
-  
+
   Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, color) {
     color = color || "#000";
     var path = ["M", x, y, "L", x + w, y, x + w, y + h, x, y + h, x, y],
@@ -14,5 +14,5 @@ $(function() {
       path = path.concat(["M", x + i * columnWidth, y, "L", x + i * columnWidth, y + h]);
     }
     return this.path(path.join(",")).attr({stroke: color});
-  };  
+  };
 });

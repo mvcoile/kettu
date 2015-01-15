@@ -1,5 +1,5 @@
 (function($) {
-  
+
   Sammy = Sammy || {};
 
   Sammy.TransmissionRPC = function(app) {
@@ -8,7 +8,7 @@
       'url': '/transmission/rpc',
       'session_id': ''
     };
-    
+
     app.helpers({
       remote_session_id: function() {
         return transmission.rpc.session_id;
@@ -40,12 +40,12 @@
               that.remote_query(params, callback);
             } else {
               Sammy.log('RPC Connection Failure.');
-              Sammy.log(xhr.responseText);            
+              Sammy.log(xhr.responseText);
             }
           }
-        });        
+        });
       }
     });
   };
-  
+
 })(jQuery);

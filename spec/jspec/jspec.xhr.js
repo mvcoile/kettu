@@ -2,10 +2,10 @@
 // JSpec - XHR - Copyright TJ Holowaychuk <tj@vision-media.ca> (MIT Licensed)
 
 (function(){
-  
+
   // --- Original XMLHttpRequest
-  
-  var OriginalXMLHttpRequest = 'XMLHttpRequest' in this ? 
+
+  var OriginalXMLHttpRequest = 'XMLHttpRequest' in this ?
                                  XMLHttpRequest :
                                    function(){}
 
@@ -14,7 +14,7 @@
   var MockXMLHttpRequest = function() {
     this.requestHeaders = {}
   }
-  
+
   MockXMLHttpRequest.prototype = {
     status: 0,
     async: true,
@@ -30,7 +30,7 @@
     getAllResponseHeaders : function(){
       return this.responseHeaders
     },
-    
+
     /**
      * Return case-insensitive value for header _name_.
      */
@@ -38,7 +38,7 @@
     getResponseHeader : function(name) {
       return this.responseHeaders[name.toLowerCase()]
     },
-    
+
     /**
      * Set case-insensitive _value_ for header _name_.
      */
@@ -46,7 +46,7 @@
     setRequestHeader : function(name, value) {
       this.requestHeaders[name.toLowerCase()] = value
     },
-    
+
     /**
      * Open mock request.
      */
@@ -60,7 +60,7 @@
       if (async != undefined) this.async = async
       if (this.async) this.onreadystatechange()
     },
-    
+
     /**
      * Send request _data_.
      */
@@ -73,9 +73,9 @@
       if(this.async) this.onreadystatechange()
     }
   }
-  
+
   // --- Response status codes
-  
+
   JSpec.statusCodes = {
     100: 'Continue',
     101: 'Switching Protocols',
@@ -119,7 +119,7 @@
     504: 'Gateway Timeout',
     505: 'HTTP Version Not Supported'
   }
-  
+
   /**
    * Mock XMLHttpRequest requests.
    *
@@ -128,7 +128,7 @@
    * @return {hash}
    * @api public
    */
-  
+
   function mockRequest() {
     return { and_return : function(body, type, status, headers) {
       XMLHttpRequest = MockXMLHttpRequest
@@ -143,17 +143,17 @@
       })
     }}
   }
-  
+
   /**
    * Unmock XMLHttpRequest requests.
    *
    * @api public
    */
-  
+
   function unmockRequest() {
     XMLHttpRequest = OriginalXMLHttpRequest
   }
-  
+
   JSpec.include({
     name: 'Mock XHR',
 
@@ -169,9 +169,9 @@
     afterSpec : function() {
       unmockRequest()
     },
-    
+
     // --- DSLs
-    
+
     DSLs : {
       snake : {
         mock_request: mockRequest,

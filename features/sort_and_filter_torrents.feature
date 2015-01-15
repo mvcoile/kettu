@@ -2,7 +2,7 @@ Feature: sort and filter torrents
   In order to have a better overview
   As a user
   I want to sort and filter torrents
-  
+
   Scenario: filter torrents
     Given three torrents with the names "Mutant Ninja Turtles, Donald Duck, Saber Riders" and the stati "4, 8, 16"
     When I go to the start page
@@ -27,7 +27,7 @@ Feature: sort and filter torrents
       But I should not see "Mutant Ninja Turtles"
     When I follow "Enable Compact View"
     Then I should see "Saber Riders"
-      But I should not see "Mutant Ninja Turtles"    
+      But I should not see "Mutant Ninja Turtles"
 
   Scenario: sort torrents by name
     Given three torrents with the names "Mutant Ninja Turtles, Donald Duck, Saber Riders" and the stati "4, 8, 16"
@@ -46,7 +46,7 @@ Feature: sort and filter torrents
     When I go to the activity sorted torrents page
     Then I should see "Saber Riders" before "Donald Duck"
       And I should see "Donald Duck" before "Mutant Ninja Turtles"
-  
+
   Scenario: sort torrents by age
     Given three torrents with the names "Mutant Ninja Turtles, Donald Duck, Saber Riders" and the date added "87742, 84253, 81181"
     When I go to the age sorted torrents page
@@ -64,13 +64,12 @@ Feature: sort and filter torrents
     When I go to the queue sorted torrents page
     Then I should see "Mutant Ninja Turtles" before "Donald Duck"
       And I should see "Donald Duck" before "Saber Riders"
-      
+
   Scenario: filter and sort at the same time
     Given three torrents with the names "Mutant Ninja Turtles, Donald Duck, Saber Riders" and the stati "4, 4, 16"
     When I go to the name sorted torrents page
       And I follow "Downloading"
     Then I should see "Donald Duck" before "Mutant Ninja Turtles"
       And I should not see "Saber Riders"
-    
-  
-  
+
+

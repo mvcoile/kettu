@@ -17,7 +17,7 @@
         menu.hide();
         return true;
       });
-      
+
       menu.find('a').click(function() {
         menu.hide();
         return true;
@@ -30,16 +30,16 @@
             break;
         }
       });
-			
+
       menu.css({
         left: event.pageX - 170,
         top: event.pageY - 150
       }).show();
-      $(document).one('click', function() { menu.hide(); })      
-      
+      $(document).one('click', function() { menu.hide(); })
+
       return false;
     });
-      
+
     return this;
   };
 })(jQuery);

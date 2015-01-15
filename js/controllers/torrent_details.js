@@ -1,10 +1,10 @@
 TorrentDetails = function(transmission) { with(transmission) {
   var context;
-  
+
   before(function() {
     context = this;
   });
-  
+
   get('#/torrent_details', function() {
     var active_torrents = $('.torrent.active');
     switch(active_torrents.length) {
@@ -20,16 +20,16 @@ TorrentDetails = function(transmission) { with(transmission) {
         var ids = $.map(active_torrents, function(torrent) { return parseInt($(torrent).attr('id'), 10); });
         accumulate_torrents_and_render_result(ids, context.empty_accumulation_hash());
         break;
-    }    
+    }
   });
-  
+
   function accumulate_torrents_and_render_result(torrents, accumulation) {
     if(torrents.length == 0) {
       var view = TorrentDetailsView(accumulation);
       context.partial('./templates/torrent_details/index.mustache', view, function(rendered_view) {
         context.openInfo(rendered_view);
         if(transmission.last_menu_item) { $('#' + transmission.last_menu_item).click(); }
-      });      
+      });
     } else {
       var fields = Torrent({})['fields'].concat(Torrent({})['info_fields']);
       var request = context.build_request('torrent-get', {'ids': torrents.shift(), 'fields': fields});
@@ -53,12 +53,12 @@ TorrentDetails = function(transmission) { with(transmission) {
 
   get('#/torrent_details/:id', function() {
     var id = parseInt(context.params['id'], 10);
-    
+
     get_and_render_torrent_details(id, 'render_torrent_details_in_view');
     if(transmission.info_interval_id) { clearInterval(transmission.info_interval_id); }
     transmission.info_interval_id = setInterval("get_and_render_torrent_details(" + id + ", 'update_torrent_details_in_view')", context.reload_interval);
   });
-  
+
   get_and_render_torrent_details = function(id, callback) {
     var fields = Torrent({})['fields'].concat(Torrent({})['info_fields']);
     var request = context.build_request('torrent-get', {'ids': id, 'fields': fields});
@@ -68,10 +68,10 @@ TorrentDetails = function(transmission) { with(transmission) {
       var view = TorrentView(torrent, context, context.params['sort_peers']);
       var template = torrent.hasError() ? 'show_with_errors' : 'show';
       var partial = './templates/torrent_details/file.mustache';
-      
+
       context.partial('./templates/torrent_details/' + template + '.mustache', view, function(rendered_view) {
         context[callback].call(this, context, rendered_view, torrent);
-      }, {file: partial});      
+      }, {file: partial});
     });
   };
 }};

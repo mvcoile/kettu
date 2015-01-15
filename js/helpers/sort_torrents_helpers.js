@@ -1,11 +1,11 @@
-// 
+//
 // these sort helpers are based heavily on the previous sort helpers by Dave Perrett and Malcolm Jarvis
 //
 
 var SortTorrentsHelpers = {
   sortTorrents: function(sort_mode, torrents, reverse) {
     var torrent_sort_function = function() {};
-    
+
     switch(sort_mode) {
       case 'name':
         torrent_sort_function = function(a, b) {
@@ -31,7 +31,7 @@ var SortTorrentsHelpers = {
           } else {
            var a_ratio = Math.ratio(a.uploadedEver, a.downloadedEver);
            var b_ratio = Math.ratio(b.uploadedEver, b.downloadedEver);
-           return a_ratio - b_ratio;            
+           return a_ratio - b_ratio;
           }
         };
         break;
@@ -46,13 +46,13 @@ var SortTorrentsHelpers = {
         };
         break;
     }
-    
+
     torrents.sort(torrent_sort_function);
-    
+
     if(reverse) {
       torrents.reverse();
     }
-    
+
     return torrents;
   }
 }
